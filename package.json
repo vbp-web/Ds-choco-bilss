@@ -1,0 +1,30 @@
+{
+  "name": "ds-choco-bliss",
+  "version": "1.0.0",
+  "description": "Full-stack e-commerce website for D's Choco Bliss",
+  "main": "index.js",
+  "scripts": {
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "server": "cd backend && npm run dev",
+    "client": "cd frontend && npm start",
+    "install-all": "npm install && cd backend && npm install && cd ../frontend && npm install",
+    "build": "cd frontend && npm run build",
+    "start": "cd backend && npm start"
+  },
+  "keywords": [
+    "ecommerce",
+    "chocolate",
+    "react",
+    "nodejs"
+  ],
+  "author": "D's Choco Bliss",
+  "license": "MIT",
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  },
+  "dependencies": {
+    "axios": "^1.12.2",
+    "dotenv": "^17.2.3",
+    "mongoose": "^8.19.0"
+  }
+}

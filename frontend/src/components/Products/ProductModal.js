@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaTimes, FaMinus, FaPlus } from 'react-icons/fa';
 
-const ProductModal = ({ product, onClose, onAddToCart, useOverlay = true }) => {
+const ProductModal = ({ product, onClose, onAddToCart }) => {
   const [selectedOption, setSelectedOption] = useState(product.options[0]);
   const [quantity, setQuantity] = useState(1);
 
@@ -17,30 +17,34 @@ const ProductModal = ({ product, onClose, onAddToCart, useOverlay = true }) => {
     onAddToCart(selectedOption, quantity);
   };
 
-  const panelClass = useOverlay
-    ? "bg-white rounded-xl max-w-md w-full max-h-[90vh] overflow-y-auto shadow-lg"
-    : "bg-white rounded-lg w-full shadow-lg overflow-visible";
-
-  const content = (
-    <motion.div
-      className={panelClass}
-      initial={{ 
-        scale: 0.95, 
-        opacity: 0,
-        y: -10
-      }}
-      animate={{ 
-        scale: 1, 
-        opacity: 1,
-        y: 0
-      }}
-      exit={{ 
-        scale: 0.95, 
-        opacity: 0,
-        y: 10
-      }}
-      onClick={(e) => e.stopPropagation()}
-    >
+  return (
+    <AnimatePresence>
+      <motion.div
+        className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        onClick={onClose}
+      >
+        <motion.div
+          className="bg-white rounded-xl max-w-md w-full max-h-[90vh] overflow-y-auto shadow-lg"
+          initial={{ 
+            scale: 0.8, 
+            opacity: 0,
+            y: -20
+          }}
+          animate={{ 
+            scale: 1, 
+            opacity: 1,
+            y: 0
+          }}
+          exit={{ 
+            scale: 0.8, 
+            opacity: 0,
+            y: 20
+          }}
+          onClick={(e) => e.stopPropagation()}
+        >
           {/* Header */}
           <div className="relative p-6 border-b">
             <motion.button
@@ -91,7 +95,8 @@ const ProductModal = ({ product, onClose, onAddToCart, useOverlay = true }) => {
                 <motion.div 
                   className="text-6xl"
                   animate={{ 
-                    scale: [1, 1.05, 1]
+                    rotateY: [0, 360],
+                    scale: [1, 1.1, 1]
                   }}
                   transition={{ 
                     duration: 3,
@@ -121,13 +126,16 @@ const ProductModal = ({ product, onClose, onAddToCart, useOverlay = true }) => {
                   key={option.name}
                   className={`block p-3 border-2 rounded-lg cursor-pointer transition-all duration-300 ${
                     selectedOption.name === option.name
-                      ? 'border-chocolate-500 bg-chocolate-50 shadow-md'
+                      ? 'border-chocolate-500 bg-chocolate-50 shadow-3d'
                       : 'border-gray-200 hover:border-chocolate-300 hover:shadow-lg'
                   }`}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.6 + index * 0.1 }}
-                  whileHover={{ scale: 1.02 }}
+                  whileHover={{ 
+                    scale: 1.02,
+                    rotateX: 2
+                  }}
                   whileTap={{ scale: 0.98 }}
                 >
                   <input
@@ -214,11 +222,14 @@ const ProductModal = ({ product, onClose, onAddToCart, useOverlay = true }) => {
 
             {/* Total Price */}
             <motion.div 
-              className="mb-6 p-4 bg-chocolate-50 rounded-lg shadow-md"
+              className="mb-6 p-4 bg-chocolate-50 rounded-lg shadow-3d"
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 1 }}
-              whileHover={{ scale: 1.02 }}
+              whileHover={{ 
+                scale: 1.02,
+                rotateX: 2
+              }}
             >
               <div className="flex justify-between items-center">
                 <span className="text-lg font-semibold text-chocolate-700">
@@ -247,34 +258,17 @@ const ProductModal = ({ product, onClose, onAddToCart, useOverlay = true }) => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 1.1 }}
-              whileHover={{ scale: 1.03 }}
+              whileHover={{ 
+                scale: 1.05,
+                rotateX: 5
+              }}
               whileTap={{ scale: 0.95 }}
             >
               Add to Cart - ₹{selectedOption.price * quantity}
             </motion.button>
           </div>
-    </motion.div>
-  );
-
-  if (useOverlay) {
-    return (
-      <AnimatePresence>
-        <motion.div
-          className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          onClick={onClose}
-        >
-          {content}
         </motion.div>
-      </AnimatePresence>
-    );
-  }
-
-  return (
-    <AnimatePresence>
-      {content}
+      </motion.div>
     </AnimatePresence>
   );
 };

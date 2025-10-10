@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { createPortal } from 'react-dom';
-import { FaArrowLeft } from 'react-icons/fa';
 import LoginForm from './LoginForm';
 import SignupForm from './SignupForm';
 
@@ -19,17 +17,15 @@ const AuthModal = ({ isOpen, onClose }) => {
     onClose();
   };
 
-  return createPortal(
+  return (
     <AnimatePresence>
       {isOpen && (
         <motion.div 
-          className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-[1000] p-4"
+          className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.3 }}
-          role="dialog"
-          aria-modal="true"
         >
           <motion.div 
             className="bg-white rounded-lg shadow-lg max-w-md w-full max-h-[90vh] overflow-y-auto"
@@ -58,33 +54,21 @@ const AuthModal = ({ isOpen, onClose }) => {
               scale: 1.01,
               transition: { duration: 0.15 }
             }}
-            onClick={(e) => e.stopPropagation()}
           >
             <motion.div 
-              className="sticky top-0 bg-white border-b px-4 sm:px-6 py-4 flex items-center justify-between"
+              className="sticky top-0 bg-white border-b px-6 py-4 flex justify-between items-center"
               initial={{ y: -20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.2, duration: 0.3 }}
             >
-              <div className="flex items-center gap-3">
-                <motion.button
-                  onClick={handleClose}
-                  className="text-chocolate-700 hover:text-chocolate-900 flex items-center gap-2"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <FaArrowLeft className="h-5 w-5" />
-                  <span className="hidden sm:inline">Back</span>
-                </motion.button>
-                <motion.h2 
-                  className="text-lg font-semibold text-chocolate-800"
-                  initial={{ scale: 0.9 }}
-                  animate={{ scale: 1 }}
-                  transition={{ delay: 0.3, type: "spring", stiffness: 200 }}
-                >
-                  {isLogin ? 'Sign In' : 'Create Account'}
-                </motion.h2>
-              </div>
+              <motion.h2 
+                className="text-lg font-semibold text-chocolate-800"
+                initial={{ scale: 0.9 }}
+                animate={{ scale: 1 }}
+                transition={{ delay: 0.3, type: "spring", stiffness: 200 }}
+              >
+                {isLogin ? 'Sign In' : 'Create Account'}
+              </motion.h2>
               <motion.button
                 onClick={handleClose}
                 className="text-gray-400 hover:text-gray-600 text-xl font-bold transition-colors"
@@ -95,8 +79,6 @@ const AuthModal = ({ isOpen, onClose }) => {
                 }}
                 whileTap={{ scale: 0.9 }}
                 transition={{ duration: 0.2 }}
-                aria-label="Close"
-                title="Close"
               >
                 ×
               </motion.button>
@@ -135,8 +117,7 @@ const AuthModal = ({ isOpen, onClose }) => {
           </motion.div>
         </motion.div>
       )}
-    </AnimatePresence>,
-    document.body
+    </AnimatePresence>
   );
 };
 

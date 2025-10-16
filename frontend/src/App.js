@@ -17,7 +17,7 @@ function App() {
   return (
     <AuthProvider>
       <CartProvider>
-        <Router>
+  <Router basename={process.env.PUBLIC_URL}>
         <div className="min-h-screen bg-gradient-to-br from-cream-50 to-chocolate-50 bg-3d-pattern gpu-accelerated">
           <Navbar />
           <main>

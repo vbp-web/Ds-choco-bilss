@@ -12,6 +12,8 @@ import CheckoutPage from './pages/CheckoutPage';
 import OrderSuccess from './pages/OrderSuccess';
 import AdminPage from './pages/AdminPage';
 import ProfilePage from './pages/ProfilePage';
+import LoginPage from './auth/LoginPage';
+import SignupPage from './auth/SignupPage';
 
 function App() {
   return (
@@ -28,6 +30,8 @@ function App() {
               <Route path="/checkout" element={<CheckoutPage />} />
               <Route path="/order-success/:orderId" element={<OrderSuccess />} />
               <Route path="/profile" element={<ProfilePage />} />
+              <Route path="/login" element={<LoginPage />} />
+              <Route path="/signup" element={<SignupPage />} />
               <Route path="/admin" element={<AdminPage />} />
             </Routes>
           </main>

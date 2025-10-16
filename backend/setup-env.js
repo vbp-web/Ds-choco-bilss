@@ -4,7 +4,7 @@ const path = require('path');
 console.log('🔧 MongoDB Atlas Setup Helper\n');
 
 // Pre-configured MongoDB Atlas connection
-const mongoUri = 'mongodb+srv://prajapativansh512_db_user:Vansh%40111_%23@cluster0.0wlc9sc.mongodb.net/ds-choco-bliss?retryWrites=true&w=majority';
+const mongoUri = 
 
 console.log('Using pre-configured MongoDB Atlas connection...');
 console.log('Cluster: cluster0.0wlc9sc.mongodb.net');

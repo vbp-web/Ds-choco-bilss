@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useCart } from '../context/CartContext';
-import axios from 'axios';
 import toast from 'react-hot-toast';
 import { FaUser, FaPhone, FaEnvelope, FaMapMarkerAlt, FaLock } from 'react-icons/fa';
 

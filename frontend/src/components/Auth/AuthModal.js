@@ -28,7 +28,7 @@ const AuthModal = ({ isOpen, onClose }) => {
           transition={{ duration: 0.3 }}
         >
           <motion.div 
-            className="bg-white rounded-lg shadow-lg max-w-md w-full max-h-[90vh] overflow-y-auto"
+            className="bg-white rounded-lg shadow-lg max-w-md w-full max-h-[90vh] overflow-y-auto flex flex-col"
             initial={{ 
               opacity: 0, 
               scale: 0.95, 
@@ -61,14 +61,31 @@ const AuthModal = ({ isOpen, onClose }) => {
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.2, duration: 0.3 }}
             >
-              <motion.h2 
-                className="text-lg font-semibold text-chocolate-800"
-                initial={{ scale: 0.9 }}
-                animate={{ scale: 1 }}
-                transition={{ delay: 0.3, type: "spring", stiffness: 200 }}
-              >
-                {isLogin ? 'Sign In' : 'Create Account'}
-              </motion.h2>
+              <div className="flex items-center space-x-3">
+                {!isLogin && (
+                  <motion.button
+                    onClick={toggleForm}
+                    className="text-chocolate-600 hover:text-chocolate-800 transition-colors"
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.9 }}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.4, duration: 0.3 }}
+                  >
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                    </svg>
+                  </motion.button>
+                )}
+                <motion.h2 
+                  className="text-lg font-semibold text-chocolate-800"
+                  initial={{ scale: 0.9 }}
+                  animate={{ scale: 1 }}
+                  transition={{ delay: 0.3, type: "spring", stiffness: 200 }}
+                >
+                  {isLogin ? 'Sign In' : 'Create Account'}
+                </motion.h2>
+              </div>
               <motion.button
                 onClick={handleClose}
                 className="text-gray-400 hover:text-gray-600 text-xl font-bold transition-colors"
@@ -85,7 +102,7 @@ const AuthModal = ({ isOpen, onClose }) => {
             </motion.div>
             
             <motion.div 
-              className="p-6"
+              className="p-6 flex-1 flex items-center justify-center min-h-[400px]"
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.4, duration: 0.3 }}

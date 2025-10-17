@@ -116,7 +116,7 @@ const SignupForm = ({ onToggleForm, onClose }) => {
 
   return (
     <motion.div 
-      className="w-full max-w-sm sm:max-w-md md:max-w-lg mx-auto px-4 py-6 overflow-hidden"
+      className="w-full px-2 py-2"
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}

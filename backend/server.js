@@ -50,6 +50,6 @@ const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
-  console.log(`Health check: http://localhost:${PORT}/api/health`);
+  console.log(`Health check: http://https://ds-choco-bilss-4ncg.vercel.app/api/health`);
   console.log(`Products API: http://localhost:${PORT}/api/products`);
 });

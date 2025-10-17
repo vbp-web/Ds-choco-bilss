@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/Ds-choco-bilss/static/css/main.6001ef45.css",
+    "main.js": "/Ds-choco-bilss/static/js/main.c07bec5e.js",
+    "index.html": "/Ds-choco-bilss/index.html",
+    "main.6001ef45.css.map": "/Ds-choco-bilss/static/css/main.6001ef45.css.map",
+    "main.c07bec5e.js.map": "/Ds-choco-bilss/static/js/main.c07bec5e.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.6001ef45.css",
+    "static/js/main.c07bec5e.js"
+  ]
+}

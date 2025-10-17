@@ -1,0 +1,26 @@
+name: Check MongoDB connection
+
+on:
+  workflow_dispatch:
+
+jobs:
+  check-mongo:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Install backend deps
+        working-directory: ./backend
+        run: npm ci
+
+      - name: Run MongoDB connection check
+        working-directory: ./backend
+        env:
+          MONGODB_URI: ${{ secrets.MONGODB_URI }}
+        run: node scripts/check-mongo.js
